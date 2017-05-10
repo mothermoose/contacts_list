@@ -15,6 +15,8 @@ class ContactsController < ApplicationController
                           phone_number: params[:phone_number]
                           )
     contact.save
+    flash[:success] = "Contact Successfully Created"
+    redirect_to "/contacts/#{ contact.id }"
   end 
 
   def show
@@ -27,7 +29,24 @@ class ContactsController < ApplicationController
   end 
 
   def update
-  end
+    contact = Contact.find(params[:id])
+    contact.assign_attributes(
+                          first_name: params[:first_name],
+                          last_name: params[:last_name],
+                          email: params[:email],
+                          phone_number: params[:phone_number],
+                        )
+    contact.save
+    flash[:success] = "Recipe Successfully Updated"
+    redirect_to "/contacts/#{ contact.id }"
+  end 
+
+  def destroy
+    contact = Contact.find(params[:id]) 
+    contact.destroy
+    flash[:warning] = "Contact Destroyed"
+    redirect_to "/contacts"
+  end 
 
 end 
 

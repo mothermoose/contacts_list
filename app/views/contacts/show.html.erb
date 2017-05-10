@@ -1,6 +1,9 @@
-<h2> <%= @contact.first_name %> </h2>
-<h2> <%= @contact.last_name %> </h2>
+<h1> <%= @contact.full_name %> </h1>
+<h5>Last Updated On <%=  @contact.friendly_update_time %></h5>
+<h2> First Name: <%= @contact.first_name %> </h2>
+<h2> Last Name:<%= @contact.last_name %> </h2>
 <h3> <%= @contact.email %> </h3>
 <h3> <%= @contact.phone_number %> </h3> 
 
-<a href= "/contacts/<%= @contacts.id %>/edit">Edit Recipe</a>
+<a href= "/contacts/<%= @contact.id %>/edit">Edit Contact</a>
+<%= link_to "Delete", "/contacts/#{ @contact.id }" ,method: :delete %>
